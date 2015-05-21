@@ -1,5 +1,15 @@
 # Central-Hub
 
+## Route - DiceRoll
+
+api/GameState/DiceRoll
+
+
+## Route - 
+
+api/GameState/GameInfo
+
+
 ## JSON Spec (Example Below) - New Turn
 
 ```
