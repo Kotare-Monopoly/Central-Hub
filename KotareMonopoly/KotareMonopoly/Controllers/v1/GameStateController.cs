@@ -59,7 +59,7 @@ namespace KotareMonopoly.Controllers.v1
             evaluateSquare(playerId, newLocationId);
         }
 
-        private void evaluateSquare(int playerId, int newLocationId)
+        private  evaluateSquare(int playerId, int newLocationId)
         {
             var worker = new ApiDAL();
 
@@ -68,12 +68,12 @@ namespace KotareMonopoly.Controllers.v1
             List<SquareInformation> realEstateResult = worker.GetSquareInformations(3);
             if (playerId == 1)
             {
-                //player1.Hours += realEstateResult.Hours;
+                player1.Hours -= realEstateResult.First().Hours;
             }
 
             if (playerId == 2)
             {
-               // player2.Money += squareInformation.moneyChange;
+                player2.Hours -= realEstateResult.First().Hours;
             }
 
            
