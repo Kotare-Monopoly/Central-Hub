@@ -11,13 +11,13 @@
 	
 		player1 : {
 			money : amount (int),
-			newLocation :  string
+			newLocation :  int
 			locationDetails : string	
 		}
 
 		player2 : {
 			money : amount (int),
-			newLocation : string,
+			newLocation : int,
 			locationDetails : string
 		}
 	}	
