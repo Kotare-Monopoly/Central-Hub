@@ -12,6 +12,7 @@ using System.Web.Http.Description;
 using KotareMonopoly.Models;
 using KotareMonopoly.Plumbing;
 using KotareMonopoly.Workers;
+using Newtonsoft.Json.Linq;
 
 namespace KotareMonopoly.Controllers.v1
 {
@@ -24,14 +25,13 @@ namespace KotareMonopoly.Controllers.v1
         private KotareMonopolyDBContext db = new KotareMonopolyDBContext();
 
         //Post: api/GameState/DiceRoll
-        public void postDiceRoll(int playerID, int diceValue)
+        public void postDiceRoll(DieRoll roll)
         {
-     
-            movePlayer(playerID, diceValue);
-         
+            movePlayer(roll.dieResult, roll.currentPlayer);
+         //return CreatedAtRoute("DefaultApi", new { id = player.Id }, player);
         }
 
-        private void movePlayer(int playerId, int diceValue)
+        private void movePlayer(int diceValue, int playerId)
         {
             var newLocationId = 0;
 
@@ -124,37 +124,6 @@ namespace KotareMonopoly.Controllers.v1
             }
 
             return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/GameState
-        [ResponseType(typeof(Player))]
-        public IHttpActionResult PostPlayer(Player player)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Players.Add(player);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = player.Id }, player);
-        }
-
-        // DELETE: api/GameState/5
-        [ResponseType(typeof(Player))]
-        public IHttpActionResult DeletePlayer(int id)
-        {
-            Player player = db.Players.Find(id);
-            if (player == null)
-            {
-                return NotFound();
-            }
-
-            db.Players.Remove(player);
-            db.SaveChanges();
-
-            return Ok(player);
         }
 
         protected override void Dispose(bool disposing)
