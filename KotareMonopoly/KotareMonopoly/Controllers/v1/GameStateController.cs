@@ -59,13 +59,13 @@ namespace KotareMonopoly.Controllers.v1
             evaluateSquare(playerId, newLocationId);
         }
 
-        private  evaluateSquare(int playerId, int newLocationId)
+        private void evaluateSquare(int playerId, int newLocationId)
         {
             var worker = new ApiDAL();
 
             //SquareDTO squareDTO = new SquareDTO();
             //SquareInformation squareInformation = GetsquareInfo(newLocationId);
-            List<SquareInformation> realEstateResult = worker.GetSquareInformations(3);
+            List<SquareInformation> realEstateResult = worker.GetSquareInformations(newLocationId);
             if (playerId == 1)
             {
                 player1.Hours -= realEstateResult.First().Hours;
@@ -76,9 +76,17 @@ namespace KotareMonopoly.Controllers.v1
                 player2.Hours -= realEstateResult.First().Hours;
             }
 
-           
+            db.SaveChanges();
 
-            
+        }
+
+        //Get api/GameState/GameInfo
+        public IHttpActionResult GetGameInfo()
+        {
+            string data = "{player1 : {playerId : 1,hours : 1500,newLocation : 5,locationDetails : \"Pay player2 rent of $50\"},player2 : {playerId : 2,hours : 1550,newLocation : 9,locationDetails : \"No one owns this property.\"}}";
+
+            return Ok(data);
+
         }
 
 
