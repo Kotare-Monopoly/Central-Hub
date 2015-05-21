@@ -20,7 +20,9 @@ namespace KotareMonopoly.Controllers.v1
 
         private Player player1 = new Player();
         private Player player2 = new Player();
-        
+
+        private KotareMonopolyDBContext db = new KotareMonopolyDBContext();
+
         //Post: api/GameState/DiceRoll
         public void postDiceRoll(int playerID, int diceValue)
         {
@@ -83,32 +85,10 @@ namespace KotareMonopoly.Controllers.v1
         //Get api/GameState/GameInfo
         public IHttpActionResult GetGameInfo()
         {
-            string data = "{player1 : {playerId : 1,hours : 1500,newLocation : 5,locationDetails : \"Pay player2 rent of $50\"},player2 : {playerId : 2,hours : 1550,newLocation : 9,locationDetails : \"No one owns this property.\"}}";
+            string data = "['player1' : {'playerId' : 1,'hours' : 1500,'newLocation' : 5,'locationDetails' : 'Pay player2 rent of $50'},'player2' : {'playerId' : 2,'hours' : 1550,'newLocation' : 9,'locationDetails' : 'No one owns this property.'}]";
 
             return Ok(data);
 
-        }
-
-
-        private KotareMonopolyDBContext db = new KotareMonopolyDBContext();
-
-        // GET: api/GameState
-        public IQueryable<Player> GetPlayers()
-        {
-            return db.Players;
-        }
-
-        // GET: api/GameState/5
-        [ResponseType(typeof(Player))]
-        public IHttpActionResult GetPlayer(int id)
-        {
-            Player player = db.Players.Find(id);
-            if (player == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(player);
         }
 
         // PUT: api/GameState/5
