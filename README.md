@@ -1,11 +1,11 @@
 # Central-Hub
 
-## Route - DiceRoll
+## POST Route - DiceRoll
 
 api/GameState/DiceRoll
 
 
-## Route - Request Game Info
+## GET Route - Request Game Info
 
 api/GameState/GameInfo
 
