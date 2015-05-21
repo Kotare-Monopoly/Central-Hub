@@ -20,13 +20,13 @@ api/GameState/GameInfo
 		}
 	
 		player1 : {
-			money : amount (int),
+			hours : amount (int),
 			newLocation :  int
 			locationDetails : string	
 		}
 
 		player2 : {
-			money : amount (int),
+			hours : amount (int),
 			newLocation : int,
 			locationDetails : string
 		}
@@ -46,13 +46,13 @@ api/GameState/GameInfo
 		},
 		
 		player1 : {
-			money : 1500,
+			hours : 1500,
 			newLocation : 5,
 			locationDetails : "Pay player2 rent of $50"
 		},
 		
 		player2 : {
-			money : 1550,
+			hours : 1550,
 			newLocation : 9,
 			locationDetails : "No one owns this property."
 		}
