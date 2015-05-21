@@ -11,7 +11,7 @@ namespace KotareMonopoly.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Money { get; set; }
+        public int Hours { get; set; }
         public int CurrentPositionId { get; set; }
         [JsonIgnore]
         public virtual List<Location> OwnedProperties { get; set; } //NOT MVP
