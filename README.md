@@ -9,7 +9,7 @@
 			id : locationName
 		}
 	
-		llayer1 : {
+		Player1 : {
 			money : amount (int),
 			newLocation :  string
 			locationDetails : string	
