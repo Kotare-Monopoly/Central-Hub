@@ -10,5 +10,6 @@ namespace KotareMonopoly.Models
         public int Id { get; set; }
         public string LocationName { get; set; }
         public int NumberOfHouses { get; set; } //Not MVP
+        public virtual Player Owner { get; set; }  // Not MVP
     }
 }

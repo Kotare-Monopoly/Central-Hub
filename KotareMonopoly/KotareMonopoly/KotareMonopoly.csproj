@@ -131,8 +131,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\GameStateController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\v1\GameStateController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -151,6 +150,10 @@
     <Compile Include="Migrations\201505210124046_included-json-ignore.cs" />
     <Compile Include="Migrations\201505210124046_included-json-ignore.Designer.cs">
       <DependentUpon>201505210124046_included-json-ignore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505210319526_schema-name.cs" />
+    <Compile Include="Migrations\201505210319526_schema-name.Designer.cs">
+      <DependentUpon>201505210319526_schema-name.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Board.cs" />
@@ -187,13 +190,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505210124046_included-json-ignore.resx">
       <DependentUpon>201505210124046_included-json-ignore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505210319526_schema-name.resx">
+      <DependentUpon>201505210319526_schema-name.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
