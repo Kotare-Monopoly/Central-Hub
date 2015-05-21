@@ -37,13 +37,13 @@
 		
 		player1 : {
 			money : 1500,
-			newLocation : "Mayfair",
+			newLocation : 5,
 			locationDetails : "Pay player2 rent of $50"
 		},
 		
 		player2 : {
 			money : 1550,
-			newLocation : "Leicester Square",
+			newLocation : 9,
 			locationDetails : "No one owns this property."
 		}
 	}
