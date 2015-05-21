@@ -132,6 +132,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\v1\GameStateController.cs" />
+    <Compile Include="Controllers\v1\NewGameController.cs" />
     <Compile Include="Models\SquareDTO.cs" />
     <Compile Include="Models\SquareInformation.cs" />
     <Compile Include="Global.asax.cs">
