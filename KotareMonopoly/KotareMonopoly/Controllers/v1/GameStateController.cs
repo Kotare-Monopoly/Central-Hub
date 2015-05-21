@@ -11,6 +11,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using KotareMonopoly.Models;
 using KotareMonopoly.Plumbing;
+using KotareMonopoly.Workers;
 
 namespace KotareMonopoly.Controllers.v1
 {
@@ -60,20 +61,24 @@ namespace KotareMonopoly.Controllers.v1
 
         private void evaluateSquare(int playerId, int newLocationId)
         {
-            SquareDTO squareDTO = new SquareDTO();
-            SquareInformation squareInformation = squareDTO.GetsquareInfo(newLocationId);
+            var worker = new ApiDAL();
 
+            //SquareDTO squareDTO = new SquareDTO();
+            //SquareInformation squareInformation = GetsquareInfo(newLocationId);
+            List<SquareInformation> realEstateResult = worker.GetSquareInformations(3);
             if (playerId == 1)
             {
-                player1.Money += squareInformation.moneyChange;
+                //player1.Hours += realEstateResult.Hours;
             }
 
             if (playerId == 2)
             {
-                player2.Money += squareInformation.moneyChange;
+               // player2.Money += squareInformation.moneyChange;
             }
-            
 
+           
+
+            
         }
 
 
