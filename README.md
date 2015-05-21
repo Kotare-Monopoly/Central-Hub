@@ -1,6 +1,6 @@
 # Central-Hub
 
-## JSON Example - New Turn
+## JSON Spec (Example Below) - New Turn
 
 ```
   [
