@@ -9,13 +9,13 @@
 			id : locationName
 		}
 	
-		Player1 : {
+		player1 : {
 			money : amount (int),
 			newLocation :  string
 			locationDetails : string	
 		}
 
-		Player2 : {
+		player2 : {
 			money : amount (int),
 			newLocation : string,
 			locationDetails : string
