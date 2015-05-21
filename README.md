@@ -5,7 +5,7 @@
 api/GameState/DiceRoll
 
 
-## Route - 
+## Route - Request Game Info
 
 api/GameState/GameInfo
 
