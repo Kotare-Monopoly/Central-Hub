@@ -142,6 +142,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\v1\GameStateController.cs" />
+    <Compile Include="Controllers\v1\NewGameController.cs" />
     <Compile Include="Migrations\201505220024006_init.cs" />
     <Compile Include="Migrations\201505220024006_init.Designer.cs">
       <DependentUpon>201505220024006_init.cs</DependentUpon>
