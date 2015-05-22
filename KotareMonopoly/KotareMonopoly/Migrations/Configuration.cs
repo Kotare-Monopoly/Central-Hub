@@ -1,3 +1,5 @@
+using KotareMonopoly.Models;
+
 namespace KotareMonopoly.Migrations
 {
     using System;
@@ -19,13 +21,13 @@ namespace KotareMonopoly.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data. E.g.
             //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.Players.AddOrUpdate(
+              p => p.Hours,
+              new Player { Hours = 1500, CurrentPositionId = 0},
+              new Player { Hours = 1500, CurrentPositionId = 0}
+              
+            );
+            
         }
     }
 }

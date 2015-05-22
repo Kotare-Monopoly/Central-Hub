@@ -142,31 +142,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\v1\GameStateController.cs" />
+    <Compile Include="Migrations\201505220024006_init.cs" />
+    <Compile Include="Migrations\201505220024006_init.Designer.cs">
+      <DependentUpon>201505220024006_init.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\DieRoll.cs" />
     <Compile Include="Models\SquareDTO.cs" />
     <Compile Include="Models\SquareInformation.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505202324380_init.cs" />
-    <Compile Include="Migrations\201505202324380_init.Designer.cs">
-      <DependentUpon>201505202324380_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505202329195_restored-non-MVP-properties.cs" />
-    <Compile Include="Migrations\201505202329195_restored-non-MVP-properties.Designer.cs">
-      <DependentUpon>201505202329195_restored-non-MVP-properties.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505202332437_remove-player-id.cs" />
-    <Compile Include="Migrations\201505202332437_remove-player-id.Designer.cs">
-      <DependentUpon>201505202332437_remove-player-id.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505210124046_included-json-ignore.cs" />
-    <Compile Include="Migrations\201505210124046_included-json-ignore.Designer.cs">
-      <DependentUpon>201505210124046_included-json-ignore.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505210319526_schema-name.cs" />
-    <Compile Include="Migrations\201505210319526_schema-name.Designer.cs">
-      <DependentUpon>201505210319526_schema-name.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Board.cs" />
@@ -217,20 +201,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201505202324380_init.resx">
-      <DependentUpon>201505202324380_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505202329195_restored-non-MVP-properties.resx">
-      <DependentUpon>201505202329195_restored-non-MVP-properties.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505202332437_remove-player-id.resx">
-      <DependentUpon>201505202332437_remove-player-id.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505210124046_included-json-ignore.resx">
-      <DependentUpon>201505210124046_included-json-ignore.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505210319526_schema-name.resx">
-      <DependentUpon>201505210319526_schema-name.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201505220024006_init.resx">
+      <DependentUpon>201505220024006_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
