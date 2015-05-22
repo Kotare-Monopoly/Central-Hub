@@ -18,68 +18,36 @@ namespace KotareMonopoly.Controllers.v1
 {
     public class GameStateController : ApiController
     {
-
-        private Player player1 = new Player();
-        private Player player2 = new Player();
-
+        private Player _currentPlayer = new Player();
         private KotareMonopolyDBContext db = new KotareMonopolyDBContext();
 
         //Post: api/GameState/DiceRoll
         public IHttpActionResult postDiceRoll(DieRoll roll)
         {
+            _currentPlayer = db.Players.Find(roll.currentPlayer);
             movePlayer(roll.dieResult, roll.currentPlayer);
             return Ok(roll);
         }
 
         private void movePlayer(int diceValue, int playerId)
         {
-            var newLocationId = 0;
-
-            if (playerId == 1)
+            _currentPlayer.CurrentPositionId += diceValue;
+            if (_currentPlayer.CurrentPositionId > 39)
             {
-                newLocationId = player1.CurrentPositionId + diceValue;
-
-                if (newLocationId >= 40)
-                {
-                    newLocationId -= 40;
-                }
-                player1.CurrentPositionId = newLocationId;
+                _currentPlayer.CurrentPositionId -= 39;
             }
 
-            if (playerId == 2)
-            {
-                newLocationId = player1.CurrentPositionId + diceValue;
-                player2.CurrentPositionId = newLocationId;
-
-                if (newLocationId >= 40)
-                {
-                    newLocationId -= 40;
-                }
-                player1.CurrentPositionId = newLocationId;
-            }
             db.SaveChanges();
-            evaluateSquare(playerId, newLocationId);
+            evaluateSquare();
         }
 
-        private void evaluateSquare(int playerId, int newLocationId)
+        private void evaluateSquare()
         {
             var worker = new ApiDAL();
 
-            //SquareDTO squareDTO = new SquareDTO();
-            //SquareInformation squareInformation = GetsquareInfo(newLocationId);
-            SquareInformation realEstateResult = worker.GetSquareInformations(newLocationId);
-            if (playerId == 1)
-            {
-                player1.Hours -= realEstateResult.Hours;
-            }
-
-            if (playerId == 2)
-            {
-                player2.Hours -= realEstateResult.Hours;
-            }
-
+            SquareInformation realEstateResult = worker.GetSquareInformations(_currentPlayer.CurrentPositionId);
+            _currentPlayer.Hours -= realEstateResult.Hours;
             db.SaveChanges();
-
         }
 
         //Get api/GameState/GameInfo
@@ -87,7 +55,7 @@ namespace KotareMonopoly.Controllers.v1
         {
             //string data = "['player1' : {'playerId' : 1,'hours' : 1500,'newLocation' : 5,'locationDetails' : 'Pay player2 rent of $50'},'player2' : {'playerId' : 2,'hours' : 1550,'newLocation' : 9,'locationDetails' : 'No one owns this property.'}]";
             //List<Player> playersInDatabase = db.Players.Select(x => x.Id);
-            List<Player> playersInDatabase = db.Players.ToList();
+            //List<Player> playersInDatabase = db.Players.ToList();
             //Player player1 = new Player()
             //{
             //    Id = 1,
@@ -108,7 +76,7 @@ namespace KotareMonopoly.Controllers.v1
             //listOfPlayers.Add(player1);
             //listOfPlayers.Add(player2);
 
-            return Ok(playersInDatabase);
+            return Ok(db.Players);
         }
 
         // PUT: api/GameState/5
