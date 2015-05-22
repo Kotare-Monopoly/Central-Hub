@@ -8,7 +8,7 @@ namespace KotareMonopoly.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Boards",
+                "centralhub.Boards",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -16,41 +16,43 @@ namespace KotareMonopoly.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Locations",
+                "centralhub.Locations",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         LocationName = c.String(),
+                        NumberOfHouses = c.Int(nullable: false),
+                        Owner_Id = c.Int(),
                         Board_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Boards", t => t.Board_Id)
+                .ForeignKey("centralhub.Players", t => t.Owner_Id)
+                .ForeignKey("centralhub.Boards", t => t.Board_Id)
+                .Index(t => t.Owner_Id)
                 .Index(t => t.Board_Id);
             
             CreateTable(
-                "dbo.Players",
+                "centralhub.Players",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        Money = c.Int(nullable: false),
-                        CurrentLocation_Id = c.Int(),
+                        Hours = c.Int(nullable: false),
+                        CurrentPositionId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Locations", t => t.CurrentLocation_Id)
-                .Index(t => t.CurrentLocation_Id);
+                .PrimaryKey(t => t.Id);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Players", "CurrentLocation_Id", "dbo.Locations");
-            DropForeignKey("dbo.Locations", "Board_Id", "dbo.Boards");
-            DropIndex("dbo.Players", new[] { "CurrentLocation_Id" });
-            DropIndex("dbo.Locations", new[] { "Board_Id" });
-            DropTable("dbo.Players");
-            DropTable("dbo.Locations");
-            DropTable("dbo.Boards");
+            DropForeignKey("centralhub.Locations", "Board_Id", "centralhub.Boards");
+            DropForeignKey("centralhub.Locations", "Owner_Id", "centralhub.Players");
+            DropIndex("centralhub.Locations", new[] { "Board_Id" });
+            DropIndex("centralhub.Locations", new[] { "Owner_Id" });
+            DropTable("centralhub.Players");
+            DropTable("centralhub.Locations");
+            DropTable("centralhub.Boards");
         }
     }
 }

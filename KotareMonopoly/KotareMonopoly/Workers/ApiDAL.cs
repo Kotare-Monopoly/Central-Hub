@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Lifetime;
+using System.Threading.Tasks;
 using System.Web;
 using KotareMonopoly.Models;
 using Newtonsoft.Json;
@@ -14,34 +15,36 @@ namespace KotareMonopoly.Workers
     {
         private Uri BaseURL = new Uri("http://edarealestate.azurewebsites.net");
 
-        public List<SquareInformation> GetSquareInformations(int SquareId)
+        public SquareInformation GetSquareInformations(int SquareId)
         {
             using (var client = new HttpClient())
             {
                 client.BaseAddress = BaseURL;
                 var response = client.GetAsync(string.Format("/api/v1/properties/{0}", SquareId)).Result;
-                var responseContent = response.Content.ReadAsStringAsync().Result;
-                
-                return ConvertJSONtoSquareInfo(responseContent);
-            }
-        }
-
-        private List<SquareInformation> ConvertJSONtoSquareInfo(string JSON)
-        {
-            var squareInformation = JsonConvert.DeserializeObject<dynamic>(JSON);
-            var squareInformationResult = new List<SquareInformation>();
-
-            foreach (var item in squareInformation)
-            {
-                squareInformationResult.Add(new SquareInformation
+                if (response.IsSuccessStatusCode)
                 {
-                    Hours = (int)item["Hours"], 
-                    Id = (int)item["Id"], 
-                    LocationId = (int)item["LocationId"]
-                });
-            }
+                    string responseContent = response.Content.ReadAsStringAsync().Result;
+                    SquareInformation squareInformation = new SquareInformation();
+                    JsonConvert.PopulateObject(responseContent, squareInformation);
+                    return squareInformation;
+                }
 
-            return squareInformationResult;
+                return null;
+
+            }
         }
+
+        //private List<SquareInformation> ConvertJSONtoSquareInfo(string JSON)
+        //{
+        //    var squareInformation = JsonConvert.DeserializeObject<dynamic>(JSON);
+        //    var squareInformationResult = new List<SquareInformation>();
+
+        //    foreach (var item in squareInformation)
+        //    {
+        //        squareInformationResult.Add(new SquareInformation(){Hours = item.Hours, Id = item.Id, LocationId = item.LocationId});
+        //    }
+
+        //    return squareInformationResult;
+        //}
     }
 }

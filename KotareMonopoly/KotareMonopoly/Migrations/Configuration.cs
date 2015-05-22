@@ -23,8 +23,8 @@ namespace KotareMonopoly.Migrations
             //
             context.Players.AddOrUpdate(
               p => p.Hours,
-              new Player { Hours = 0, CurrentPositionId = 0},
-              new Player { Hours = 0, CurrentPositionId = 0}
+              new Player { Hours = 1500, CurrentPositionId = 0},
+              new Player { Hours = 1500, CurrentPositionId = 0}
               
             );
             
