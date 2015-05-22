@@ -1,68 +1,48 @@
 # Central-Hub
 
-## POST Route - DiceRoll
-
-api/GameState/DiceRoll
-
-
-## GET Route - Request Game Info
-
-http://edacentralhub.azurewebsites.net/api/v1/gamestate
-
-## JSON Spec (Example Below) - New Turn
+## POST - http://edacentralhub.azurewebsites.net/api/v1/newgame
 
 ```
-  [
-	{
-		listofLocations : {
-			id : locationName
-		}
-	
-		player1 : {
-			playerId : 1,
-			hours : amount (int),
-			newLocation :  int
-			locationDetails : string	
-		}
-
-		player2 : {
-			hours : amount (int),
-			newLocation : int,
-			locationDetails : string
-		}
-	}	
-]
-Dummy Data:
-
-"['player1' : {'playerId' : 1,'hours' : 1500,'newLocation' : 5,'locationDetails' : 'Pay player2 rent of $50'},'player2' : {'playerId' : 2,'hours' : 1550,'newLocation' : 9,'locationDetails' : 'No one owns this property.'}]"
-
-
+{
+	"dieResult": 9,
+	"currentPlayer": 1
+}
 ```
-## JSON Example - New Turn
+
+## GET - http://edacentralhub.azurewebsites.net/api/v1/newgame
 
 ```
 [
 	{
-		listOfLocations : {
-			1 : "Go",
-			2 : "First Brown Street",
-			...,
-			40 : "Mayfair"
-		},
-		
-		player1 : {
-			playerId : 1,
-			hours : 1500,
-			newLocation : 5,
-			locationDetails : "Pay player2 rent of $50"
-		},
-		
-		player2 : {
-			playerId : 2,
-			hours : 1550,
-			newLocation : 9,
-			locationDetails : "No one owns this property."
-		}
+		Id: 1,
+		Name: null,
+		Hours: 1500,
+		CurrentPositionId: 0
+	},
+	{
+		Id: 2,
+		Name: null,
+		Hours: 1500,
+		CurrentPositionId: 10
+	}
+]
+```
+
+## GET - http://edacentralhub.azurewebsites.net/api/v1/gamestate
+
+```
+[
+	{
+		Id: 1,
+		Name: null,
+		Hours: 1380,
+		CurrentPositionId: 9
+	},
+	{
+		Id: 2,
+		Name: null,
+		Hours: 1500,
+		CurrentPositionId: 20
 	}
 ]
 ```
