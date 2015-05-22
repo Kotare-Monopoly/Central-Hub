@@ -33,7 +33,12 @@ namespace KotareMonopoly.Workers
 
             foreach (var item in squareInformation)
             {
-                squareInformationResult.Add(new SquareInformation(){Hours = item.Hours, Id = item.Id, LocationId = item.LocationId});
+                squareInformationResult.Add(new SquareInformation
+                {
+                    Hours = (int)item["Hours"], 
+                    Id = (int)item["Id"], 
+                    LocationId = (int)item["LocationId"]
+                });
             }
 
             return squareInformationResult;
